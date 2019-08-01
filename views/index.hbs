@@ -7,17 +7,12 @@
   </head>
   <body>
     {{>header}}
-    <h1>Hello</h1>
-    <form>
-      <input type="text" placeholder="Location" name="" value="">
-      <button type="button" name="button">Search</button>
-    </form>
-    <h2>you searched for {{ query_search }}</h2>
-    <p>{{ forecast.WEATHER_STATUS }}</p>
-    <p>{{ forecast.CURRENTLY_TEMPS }}</p>
-    <p>{{ forecast.CURRENTLY_SUMMARY }}</p>
-    <p>{{ forecast.TIMEZONE }}</p>
-    <p>{{ forecast.WIND_SPEED }} km/h</p>
+
+      <form class="" action="">
+        <input type="text" placeholder="Location" name="" value="">
+        <input type="submit" name="" value="submit">
+      </form>
+      <p id="message-1"></p>
 
     {{>footer}}
 

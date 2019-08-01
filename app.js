@@ -21,16 +21,19 @@ const chalk = require('chalk')
 
 
 app.get('/',(req,res) =>{
-  // res.render('index',{
-  //   title:'weather information',
-  //   name:'Tarun Singh'
-  // })
+  res.render('index',{
+    title:'weather information',
+    name:'Tarun Singh'
+  })
+})
 
-  if(!req.query.address){
+app.get('/w',(req,res) =>{
+
+   if(!req.query.address){
     console.log('Provide address')
     return
   }
-  geocode(' Bengluru, Karnatka India',(error,{LATITUDE:latitude, LONGITUTDE:longitude, PLACENAME:location} = {}) => {
+  geocode(req.query.address,(error,{LATITUDE:latitude, LONGITUTDE:longitude, PLACENAME:location} = {}) => {
    if(error){
      console.log(error)
      res.send({ error })
@@ -42,21 +45,17 @@ app.get('/',(req,res) =>{
        res.send({ error })
        return
      }
-     console.log((chalk.green.inverse(location)))
-     temp_in_c = (5/9) * (forecast.CURRENTLY_TEMP - 32)
-     console.log(temp_in_c.toFixed(2) + " C")
-     console.log(forecast);
-     res.render('index',{
+     //  console.log((chalk.green.inverse(location)))
+     // temp_in_c = (5/9) * (forecast.CURRENTLY_TEMP - 32)
+     // console.log(temp_in_c.toFixed(2) + " C")
+     res.send({
        forecast:forecast,
-       title:'WEATHER FORECAST',
-       name:'Tarun Singh',
-       query_search:req.query.address
+       location
      })
     })
  })
+ })
 
-
-})
 
 app.get('/about',(req,res) =>{
   res.render('about')
