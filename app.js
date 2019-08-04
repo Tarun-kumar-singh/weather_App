@@ -21,22 +21,20 @@ const chalk = require('chalk')
 
 
 app.get('/',(req,res) =>{
-  res.render('index',{
-    title:'weather information',
-    name:'Tarun Singh'
-  })
+  res.render('index')
 })
 
 app.get('/w',(req,res) =>{
 
    if(!req.query.address){
     console.log('Provide address')
+    res.send({error:'provide address'})
     return
   }
   geocode(req.query.address,(error,{LATITUDE:latitude, LONGITUTDE:longitude, PLACENAME:location} = {}) => {
    if(error){
      console.log(error)
-     res.send({ error })
+     res.send({ error:'provide address' })
      return
     }
    forecast(latitude,longitude,(error,forecast) =>{
@@ -45,13 +43,12 @@ app.get('/w',(req,res) =>{
        res.send({ error })
        return
      }
-     //  console.log((chalk.green.inverse(location)))
-     // temp_in_c = (5/9) * (forecast.CURRENTLY_TEMP - 32)
-     // console.log(temp_in_c.toFixed(2) + " C")
      res.send({
        forecast:forecast,
        location
      })
+     console.log(forecast);
+     console.log(location);
     })
  })
  })

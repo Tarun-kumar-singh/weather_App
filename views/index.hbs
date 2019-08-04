@@ -6,18 +6,46 @@
 
   </head>
   <body>
-    {{>header}}
 
-      <form class="" action="">
-        <input type="text" placeholder="Location" name="" value="">
-        <input type="submit" name="" value="submit">
-      </form>
-      <p id="message-1"></p>
+{{>header}}
 
-    {{>footer}}
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">WEATHER FORECAST</h5>
+        <p class="card-text">Search below by address</p>
+       <div class="row">
+         <form class="">
+           <input type="text" placeholder=" Eg: Bengluru India" class="form-control">
+           <div id="message-error" style="color:red">    </div>
+           <br><br>
+            <input type="submit" style="width:150px" class="btn btn-primary" name="" value="FIND">
+         </form>
+       </div>
+
+      </div>
+    </div>
+   <br><br>
+     <h3 id="loadingmessage"></h3>
+    <div id="datadisplay" class="card text-white bg-dark mb-3" style="max-width: 1000px;margin-left:15%;display:none">
+     <div class="card-header">Result is showing for <p class="text-primary" id="message-1"></p> </div>
+     <div class="card-body">
+       <h5 id="message-2" class="card-title"></h5>
+       <div class="card-text">
+       <p id="message-2"></p>
+       <p id="message-4"></p>
+       <p id="message-5"></p>
+       <p id="message-6"></p>
+       <p id="message-7"></p>
+       <p id="message-8"></p>
+     </div>
+     </div>
+   </div>
 
 
     <script type="text/javascript" src="/js/app.js">
     </script>
+
+    {{>footer}}
+
   </body>
 </html>
