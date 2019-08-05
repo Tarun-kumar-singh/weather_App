@@ -13,19 +13,19 @@
       <div class="card-body">
         <h5 class="card-title">WEATHER FORECAST</h5>
         <p class="card-text">Search below by address</p>
-       <div class="row">
-         <form class="">
-           <input type="text" placeholder=" Eg: Bengluru India" class="form-control">
+          <form class="">
+            <center>
+           <input type="text" style="width:400px;" placeholder=" Eg: Bengluru India" class="form-control col-lg-offset-4">
+         </center>
            <div id="message-error" style="color:red">    </div>
            <br><br>
             <input type="submit" style="width:150px" class="btn btn-primary" name="" value="FIND">
          </form>
-       </div>
 
       </div>
     </div>
    <br><br>
-     <h3 id="loadingmessage"></h3>
+     <h3 id="loadingmessage" style="color:green" class="text-center"></h3>
     <div id="datadisplay" class="card text-white bg-dark mb-3" style="max-width: 1000px;margin-left:15%;display:none">
      <div class="card-header">Result is showing for <p class="text-primary" id="message-1"></p> </div>
      <div class="card-body">
@@ -45,7 +45,6 @@
     <script type="text/javascript" src="/js/app.js">
     </script>
 
-    {{>footer}}
 
   </body>
 </html>

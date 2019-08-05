@@ -9,10 +9,11 @@ const geocode =  (address,callback) => {
       callback('Unable to connect to geo location services',undefined)
     }
     else if (response.body.features.length === 0) {
-      callback('Unable to find the geo location  of the given address',undefined)
+      callback('Unable to find the geo location of the given address',undefined)
+      return
 
     }
-    callback(undefined,{"LONGITUTDE":response.body.features[0].center[0], "LATITUDE": response.body.features[0].center[1],"PLACENAME":response.body.features[4].place_name})
+    callback(undefined,{"LONGITUTDE":response.body.features[0].center[0], "LATITUDE": response.body.features[0].center[1],"PLACENAME":response.body.features[0].place_name})
   })
 }
 

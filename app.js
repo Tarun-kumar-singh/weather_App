@@ -34,7 +34,7 @@ app.get('/w',(req,res) =>{
   geocode(req.query.address,(error,{LATITUDE:latitude, LONGITUTDE:longitude, PLACENAME:location} = {}) => {
    if(error){
      console.log(error)
-     res.send({ error:'provide address' })
+     res.send({ error:error })
      return
     }
    forecast(latitude,longitude,(error,forecast) =>{
@@ -72,19 +72,21 @@ app.listen(port,()  =>{
   console.log("App is listening on port "+ port)
 })
 
-//  geocode(' Bengluru, Karnatka India',(error,{LATITUDE:latitude, LONGITUTDE:longitude, PLACENAME:location}) => {
-//   if(error){
-//     console.log(error)
-//     return
-//    }
-//   forecast(latitude,longitude,(error,forecast) =>{
-//     if (error) {
-//       console.log(error)
-//       return
-//     }
-//     console.log((chalk.green.inverse(location)))
-//     temp_in_c = (5/9) * (forecast.CURRENTLY_TEMP - 32)
-//     console.log(temp_in_c.toFixed(2) + " C")
-//     // console.log(forecast)//
-//   })
-// })
+//
+//
+//
+// Bugs spotted
+//
+// 1. on not matching the exact address server gets crashed
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
