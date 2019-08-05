@@ -7,7 +7,7 @@ var message2 = document.querySelector("#message-2")
    document.querySelector('#loadingmessage').textContent = 'Loading...'
    document.querySelector("#message-error").textContent = ""
 
-  fetch('http://localhost:3000/w?address=' + address).then((response) =>{
+  fetch('/w?address=' + address).then((response) =>{
 
     response.json().then((data) =>{
       if (data.error) {

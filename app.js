@@ -19,6 +19,7 @@ const forecast = require('./forcast')
 const geocode = require('./geocode')
 const chalk = require('chalk')
 
+const port = process.env.PORT !! 3000
 
 app.get('/',(req,res) =>{
   res.render('index')
@@ -67,7 +68,6 @@ res.render('404',{
 })
 
 
-port = 3000
 app.listen(port,()  =>{
   console.log("App is listening on port "+ port)
 })
