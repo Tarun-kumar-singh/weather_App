@@ -12,7 +12,6 @@ var message2 = document.querySelector("#message-2")
     response.json().then((data) =>{
       if (data.error) {
         document.querySelector('#loadingmessage').textContent = ""
-        console.log(data.error)
         document.querySelector("#message-error").textContent = data.error
         return
       }
@@ -26,6 +25,9 @@ var message2 = document.querySelector("#message-2")
        document.querySelector("#message-6").textContent ="Temperature: "+ data.forecast.current_status.CURRENTLY_TEMP + "F/ " + (((data.forecast.current_status.CURRENTLY_TEMP) - 32) * 5/9).toFixed(2) + "C"
        document.querySelector("#message-7").textContent ="Wind speed: "+ data.forecast.current_status.WIND_SPEED + " km/h"
        document.querySelector("#message-8").textContent ="Humidity: "+ data.forecast.current_status.HUMIDITY * (100) + "%"
+       document.querySelector("#hour-message-1").textContent = data.forecast.hour_status.WEATHER_STATUS
+       document.querySelector("#day-message-1").textContent = data.forecast.daily_status.SUMMARY
+
  }
 
     })
@@ -33,9 +35,3 @@ var message2 = document.querySelector("#message-2")
 
     e.preventDefault()
 })
-
-// convert_temp = function (temp){
-//       x = this.temp − 32
-//       y = x * 5/9
-//       return y
-// }

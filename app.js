@@ -15,21 +15,21 @@ hbs.registerPartials(partialspath)
 
 
 
-const forecast = require('./forcast')
-const geocode = require('./geocode')
-const chalk = require('chalk')
+ const forecast = require('./forcast')
+ const geocode = require('./geocode')
+ const chalk = require('chalk')
+ const reversegeocode = require('./reversegeocode')
 
-const port = process.env.PORT || 3000
+ const port = process.env.PORT || 3000
 
-app.get('/',(req,res) =>{
+ app.get('/',(req,res) =>{
   res.render('index')
 })
 
-app.get('/w',(req,res) =>{
+ app.get('/w',(req,res) =>{
 
    if(!req.query.address){
-    console.log('Provide address')
-    res.send({error:'provide address'})
+     res.send({error:'provide address'})
     return
   }
   geocode(req.query.address,(error,{LATITUDE:latitude, LONGITUTDE:longitude, PLACENAME:location} = {}) => {
@@ -46,13 +46,37 @@ app.get('/w',(req,res) =>{
      }
      res.send({
        forecast:forecast,
-       location
+       location:location
      })
-     console.log(forecast);
-     console.log(location);
-    })
+     })
  })
  })
+
+ app.get('/current-location-weather',(req,res) =>{
+    reversegeocode(req.query.longitude,req.query.latitude,(error,data) =>{
+          if (error) {
+           res.send({ error })
+            return
+          }
+   forecast(req.query.latitude,req.query.longitude,(error,forecast) =>{
+     if (error) {
+        res.send({ error })
+       return
+     }
+     res.send({
+       forecast:forecast,
+       location:data.PLACENAME
+     })
+
+     })
+  })
+})
+
+
+
+
+
+
 
 
 app.get('/about',(req,res) =>{
@@ -61,32 +85,15 @@ app.get('/about',(req,res) =>{
 
 
 app.get('*',(req,res) => {
-
 res.render('404',{
   errormessage:'No conent find for this endpoint'
 })
 })
 
 
+
+
+
 app.listen(port,()  =>{
   console.log("App is listening on port "+ port)
 })
-
-//
-//
-//
-// Bugs spotted
-//
-// 1. on not matching the exact address server gets crashed
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//

@@ -3,7 +3,9 @@ const request = require('request');
 forecast = (latitude,longitude,callback) =>{
   url = "https://api.darksky.net/forecast/b3d603a25d632afcca278e45c1fac230/" + latitude + ',' + longitude
   request({url: url, json: true},(error,response) => {
-
+if (error) {
+  callback('Failed to reach the data',undefined)
+}
     callback(undefined,{
     current_status:{
       "WEATHER_STATUS": response.body.currently.summary,
