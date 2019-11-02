@@ -73,12 +73,6 @@ hbs.registerPartials(partialspath)
 })
 
 
-
-
-
-
-
-
 app.get('/about',(req,res) =>{
   res.render('about')
 })
